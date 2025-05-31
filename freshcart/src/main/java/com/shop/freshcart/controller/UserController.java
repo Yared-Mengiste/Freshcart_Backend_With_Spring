@@ -11,12 +11,12 @@ import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/user")
+@RequestMapping("api/users")
 public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/signup")
+    @PostMapping("/register")
     public ResponseEntity<?> signup(@RequestBody SignupRequestDTO signupRequestDTO) {
         Map<String, Object> result = userService.signup(signupRequestDTO);
         return ResponseEntity.ok(result);
@@ -28,7 +28,7 @@ public class UserController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/")
+    @GetMapping
     public ResponseEntity<?> getAllUsers() {
         return ResponseEntity.ok(userService.getAllUsers());
     }
@@ -44,7 +44,7 @@ public class UserController {
         return ResponseEntity.ok(result);
     }
 
-    @PutMapping("/update_password/{id}")
+    @PutMapping("/{id}/password")
     public ResponseEntity<?> changePassword(@PathVariable Long id, @RequestBody ChangePasswordDTO dto) {
         String result = userService.changePassword(id, dto);
         return ResponseEntity.ok(result);

@@ -57,6 +57,7 @@ public class OrderService {
             Order_items item = orderItemMapper.toEntity(itemDTO);
             item.setProduct(product);
             item.setOrder(savedOrder);
+            item.setPrice(itemDTO.getPrice());
             itemsToSave.add(item);
         }
         List<Order_items> savedItems = orderItemRepository.saveAll(itemsToSave);
@@ -65,7 +66,7 @@ public class OrderService {
         if (drivers.isEmpty()) {
             throw new ResourceNotFoundException("No available drivers in user's subcity.");
         }
-        User driver = drivers.get(0);
+        User driver = drivers.getFirst();
 
         Shop shop = shopRepository.findFirstBySubcityIgnoreCase(user.getSubcity())
                 .orElseThrow(() -> new ResourceNotFoundException("No available shops in user's subcity."));

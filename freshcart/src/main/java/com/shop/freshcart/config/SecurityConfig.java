@@ -69,11 +69,14 @@ public class SecurityConfig {
                 .formLogin(form -> form.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/user/signup", "/api/user/login").permitAll()
-                        .requestMatchers(HttpMethod.GET, "/api/user/").hasRole("ADMIN")
+                        // Public endpoints
+                        .requestMatchers("/api/users/register", "/api/users/login").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/api/users/").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/products").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/products/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("ADMIN")
+                        .requestMatchers("/api/users/**").authenticated() // Require login for GET/PUT/DELETE /api/users/{id}
+                        .requestMatchers("/api/orders/**").authenticated() // Require login for GET/PUT/DELETE /api/users/{id}
                         .anyRequest().permitAll()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
@@ -81,6 +84,7 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 
 
     @Bean
