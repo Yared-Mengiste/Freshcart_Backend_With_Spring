@@ -15,6 +15,7 @@ public interface OrderCreateMapper {
     @Mapping(source = "userId", target = "user.id") // optional, but you're setting user manually now
     Order toEntity(OrderRequestDTO orderRequestDTO);
 
+    @Mapping(target = "createdAt", ignore = true) // optional, but you're setting user manually now
     @Mapping(source = "user.id", target = "userId")
     @Mapping(source = "orderItems", target = "orderItems") // if not using ignore strategy
     OrderResponseDTO toResponseDto(Order order);

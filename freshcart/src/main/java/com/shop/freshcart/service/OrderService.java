@@ -46,6 +46,7 @@ public class OrderService {
         }
 
         Order order = orderCreateMapper.toEntity(dto);
+        order.setCreatedAt(LocalDateTime.now());
         order.setUser(user);
         Order savedOrder = orderRepository.save(order);
 

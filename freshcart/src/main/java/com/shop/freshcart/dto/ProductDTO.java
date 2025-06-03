@@ -30,7 +30,6 @@ public class ProductDTO {
 
     private String categoryName;
 
-    @Min(value = 0, message = "Stock cannot be negative")
     private Integer stock;
 
     public ProductDTO(Products product) {
