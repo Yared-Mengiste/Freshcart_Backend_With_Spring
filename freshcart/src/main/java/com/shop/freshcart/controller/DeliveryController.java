@@ -7,19 +7,19 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/delivery")
+@RequestMapping("/api/deliveries")
 @RequiredArgsConstructor
 public class DeliveryController {
 
     private final DeliveryService deliveryService;
 
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<?> getAllDeliveries() {
         return deliveryService.getAllDeliveries();
     }
 
-    @GetMapping("/user/{userId}")
+    @GetMapping("/{userId}")
     public ResponseEntity<?> getDeliveriesByUser(@PathVariable Long userId) {
         return deliveryService.getDeliveriesByUserId(userId);
     }
