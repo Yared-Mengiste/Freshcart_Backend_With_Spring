@@ -68,7 +68,7 @@ Maven
 
 🔗 Frontend Repo
 
-Frontend built in React available here 👉 FreshCart Frontend
+Frontend built in React available here 👉 https://github.com/Yared-Mengiste/Freshcart_Frontend_for_Spring
 
 🚫 License
 
