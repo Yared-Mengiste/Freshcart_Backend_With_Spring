@@ -71,12 +71,23 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // Public endpoints
                         .requestMatchers("/api/users/register", "/api/users/login").permitAll()
+
+                        // Admin-only endpoints
                         .requestMatchers(HttpMethod.GET, "/api/users/").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/api/products").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT, "/api/products/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/api/products/**").hasRole("ADMIN")
-                        .requestMatchers("/api/users/**").authenticated() // Require login for GET/PUT/DELETE /api/users/{id}
-                        .requestMatchers("/api/orders/**").authenticated() // Require login for GET/PUT/DELETE /api/users/{id}
+                        .requestMatchers(HttpMethod.GET, "/api/orders").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.GET, "/api/deliveries").authenticated()
+
+                        // Authenticated-user endpoints
+                        .requestMatchers("/api/users/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/orders/user/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/orders").authenticated()
+                        .requestMatchers("/api/orders/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/deliveries/**").authenticated()
+
+                        // All other requests
                         .anyRequest().permitAll()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
@@ -84,6 +95,7 @@ public class SecurityConfig {
 
         return http.build();
     }
+
 
 
 
