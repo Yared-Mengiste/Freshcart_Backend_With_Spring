@@ -19,7 +19,7 @@ RUN addgroup --system spring && adduser --system spring --ingroup spring
 USER spring
 
 # Copy the jar from the build stage
-COPY --from=build /app/target/freshcart-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=build /app/target/*.jar app.jar
 
 # Expose the port your Spring Boot app runs on (default is 8080)
 EXPOSE 8081
