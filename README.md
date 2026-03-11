@@ -68,7 +68,7 @@ Maven
 
 🔗 Frontend Repo
 
-Frontend built in React available here 👉 FreshCart Frontend
+Frontend built in React available here 👉 https://github.com/Yared-Mengiste/Freshcart_Frontend_for_Spring
 
 🚫 License
 
@@ -78,3 +78,9 @@ MIT License. See LICENSE file for more information.
 
 Open to improvements and feature suggestions! Feel free to fork and open a PR. Let's build a reliable grocery delivery platform together.
 
+Steps To Use the Program
+1St create a dataBase with the name fresh_cart_db
+2nd backUp FreshCartPostDB.backup
+3rd change the database password to yours
+
+to try use admin yasser@gmail.com and password: 1234567

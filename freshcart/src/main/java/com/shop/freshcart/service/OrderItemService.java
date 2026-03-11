@@ -1,4 +1,4 @@
-package com.shop.freshcart.services;
+package com.shop.freshcart.service;
 
 import com.shop.freshcart.dto.OrderItemResponseDTO;
 import com.shop.freshcart.entities.Order_items;

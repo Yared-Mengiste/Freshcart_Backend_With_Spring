@@ -1,6 +1,7 @@
 package com.shop.freshcart.config;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -30,6 +31,8 @@ public class SecurityConfig {
 
 
     private final CustomUserDetailsService userDetailsService;
+    @Value("${frontend.url}")
+    private String frontendUrl;
 
 
     @Bean
@@ -110,7 +113,7 @@ public class SecurityConfig {
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:5173"); // your React frontend
+        config.addAllowedOrigin(frontendUrl); // your React frontend
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 
