@@ -31,8 +31,8 @@ public class SecurityConfig {
 
 
     private final CustomUserDetailsService userDetailsService;
-    @Value("${frontend.url}")
-    private String frontendUrl;
+//    @Value("${frontend.url}")
+//    private String frontendUrl;
 
 
     @Bean
@@ -113,7 +113,7 @@ public class SecurityConfig {
     public CorsFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowCredentials(true);
-        config.addAllowedOrigin(frontendUrl); // your React frontend
+        config.addAllowedOrigin("https://freshcart-frontend-for-spring.vercel.app"); // your React frontend
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
 
